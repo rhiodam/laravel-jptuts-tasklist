@@ -16,7 +16,9 @@ class TaskController extends Controller
     {
         //
 
-        return view('tasks.index');
+        $tasks = Task::all();
+//        dd($tasks);
+        return view('tasks.index' ,compact('tasks'));
     }
 
     /**
@@ -47,6 +49,14 @@ class TaskController extends Controller
         $request->validate([
             'title' => 'required|min:5|max:191'
         ]);
+
+        Task::create([
+            'title' => $request->title,
+//            'completed' =>
+        ]);
+
+        session()->flash('msg' ,'Task has been created');
+        return redirect('/');
 
     }
 
@@ -90,8 +100,11 @@ class TaskController extends Controller
      * @param  \App\Task  $task
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Task $task)
+    public function destroy($id)
     {
         //
+        Task::destroy($id);
+
+        return redirect()->back()->with('msg' , 'Task has been deleted');
     }
 }

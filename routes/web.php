@@ -18,7 +18,9 @@
 Route::get('/', 'TaskController@index');
 
 
-//Route::resource('tasks','TaskController');
+Route::resource('tasks','TaskController');
 
-Route::post('/tasks/create','TaskController@store')->name('tasks.create');
+//Route::post('/tasks/create','TaskController@store')->name('tasks.create');
+//
+//Route::delete('/tasks/destroy','TaskController@store')->name('tasks.create');
 
