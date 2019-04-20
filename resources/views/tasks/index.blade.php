@@ -5,15 +5,34 @@
 {{--    Add Task Form--}}
     <div class="row mt-5">
         <div class="col-md-8">
+{{--            @if ($errors->any())--}}
+{{--                @foreach($errors->all() as $error)--}}
+{{--                    <div class="alert alert-danger">--}}
+{{--                        {{ $error }}--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            @endif--}}
             <div class="card">
                 <div class="card-header">
                     Add Task
                 </div>
                 <div class="card-body">
-                    <form action="" class="form-group">
+                    <form action="{{ route('tasks.create') }}"  method="post" class="form-group">
+{{--                        {{ csrf_token() }}--}}
+                        @csrf
                         <div class="form-group">
-                            <label for="task" class="task">Task</label>
-                            <input type="text" id="task" name="task" placeholder="Task" class="form-control">
+                            <label for="task" class="task">Title</label>
+                            <input
+                                    type="text"
+                                    id="task"
+                                    name="title"
+                                    placeholder="Task title"
+                                    class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                            >
+                            <div class="invalid-feedback">
+{{--                                Please add a valid task title.--}}
+                                {{ $errors->has('title') ? $errors->first('title') : '' }}
+                            </div>
                         </div>
                         <div class="form-group">
                             <button class="btn btn-primary">Add</button>

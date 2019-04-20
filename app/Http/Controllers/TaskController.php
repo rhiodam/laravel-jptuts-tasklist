@@ -27,6 +27,7 @@ class TaskController extends Controller
     public function create()
     {
         //
+//        return redirect(route())
     }
 
     /**
@@ -38,6 +39,15 @@ class TaskController extends Controller
     public function store(Request $request)
     {
         //
+//        dd($request->all());
+
+//        Validation
+//        $validation =
+
+        $request->validate([
+            'title' => 'required|min:5|max:191'
+        ]);
+
     }
 
     /**
